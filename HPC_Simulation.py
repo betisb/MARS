@@ -551,7 +551,9 @@ class HPC_Environment(gym.Env):
                 self.running_tasks.pop(0)
 
     def task_score(self, task_for_scheduling):
-        COST = math.log(task_for_scheduling.run_time)
+        COST = tf.random.normal(task_for_scheduling.run_time)
+        #COST = math.log(task_for_scheduling.run_time)
+
         _tmp = COST * max(1.0, (float(
             task_for_scheduling.scheduled_time - task_for_scheduling.submit_time + task_for_scheduling.run_time)
                          /
